@@ -1,0 +1,18 @@
+/*let handleIndexChange = (index) => {
+            this.setState({
+                ...this.state,
+                selectedIndex: index,
+                selectedDrill: day.drills[index]
+            });
+
+        };
+        */
+
+                                onTabPress={handleIndexChange}
+/*<View style={styles.innerContainer}>
+                    <SegmentedControlTab
+                        values={['Drill One', 'Drill Two', 'Drill Three']}
+                        selectedIndex={this.state.selectedIndex}
+                        onTabPress={console.log('Tab pressed')}
+                    />
+                </View>*/
