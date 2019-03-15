@@ -63,7 +63,7 @@ class DashboardScreen extends React.Component {
                     "benefits": "Makes shuttle retrieval easy, less chances of falling over"
                 },
                 {
-                    "name": "Length of consecutive steps",
+                    "name": "Consecutive Steps Length",
                     "area_id": 3,
                     "description": "The length of a player's final step in any movement should be the longest.",
                     "demo": "",

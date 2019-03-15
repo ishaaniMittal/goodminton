@@ -77,10 +77,15 @@ const styles = StyleSheet.create({
             flex: 1,
             paddingTop: 10,
             paddingBottom: 10,
+            backgroundColor:"white",
             borderColor: '#e4e4e4',
             borderRadius: 5,
             borderStyle: 'solid',
-            borderWidth: 1
+            borderWidth: 1,
+            shadowOffset:{ width: 2, height:2 },
+            shadowColor: '#e4e4e4',
+            shadowOpacity: 0.5
+
         },
         dashBoardDayHeader: {
             textAlign: 'center',
