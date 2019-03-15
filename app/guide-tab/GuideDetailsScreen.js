@@ -1,14 +1,17 @@
 import React from "react";
 import {ScrollView, Text, View} from "react-native";
 import styles from "../common/styles";
-import Video from "react-native-video";
-import YouTube from 'react-native-youtube'
 
 class GuideScreen extends React.Component {
 
-    /*static navigationOptions = {
-        title: 'Guide - ' + this.props.state.name,
-    };*/
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: "Guide - " + navigation.getParam('title', 'Guide'),
+            headerStyle: {
+                backgroundColor: '#f8f8f8',
+            },
+        };
+    };
 
     constructor(props) {
         super(props);

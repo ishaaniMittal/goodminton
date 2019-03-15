@@ -82,8 +82,25 @@ class DayTrainingScheduleScreen extends React.Component {
         const {navigation} = this.props;
         const day = navigation.getParam('day', {});
         console.log('Initial state',this.state.stateOne);
+
+        let handleIndexChange = (index) => {
+            this.setState({
+                ...this.state,
+                selectedIndex: index,
+                selectedDrill: day.drills[index]
+            });
+
+        };
+
         return (
             <ScrollView>
+                <View style={styles.innerContainer}>
+                    <SegmentedControlTab
+                        values={['Drill One', 'Drill Two', 'Drill Three']}
+                        selectedIndex={this.state.selectedIndex}
+                        onTabPress={handleIndexChange}
+                    />
+                </View>
                 <View>{this.displayViewsBasedOnState()}</View>
             </ScrollView>
         );
@@ -130,7 +147,7 @@ class DayTrainingScheduleScreen extends React.Component {
             </View>;
         } else if (this.state.stateTwo) {
             return <View style={styles.innerContainer}>
-                <CountDown
+                {/*<CountDown
                     until={5}
                     size={100}
                     onFinish={() => this.countDownOver()}
@@ -138,7 +155,7 @@ class DayTrainingScheduleScreen extends React.Component {
                     digitTxtStyle={{color: '#007AFF'}}
                     timeToShow={['S']}
                     timeLabels={{s: ''}}
-                /></View>;
+                />*/}</View>;
         } else if (this.state.stateThree) {
             return <View style={styles.innerContainer}>
                 <View styles={{}}>
@@ -263,8 +280,8 @@ class DayTrainingScheduleScreen extends React.Component {
         this.setState({
             ...this.state,
             stateOne: false,
-            stateTwo: true,
-            stateThree: false
+            stateTwo: false,
+            stateThree: true
         })
     }
 

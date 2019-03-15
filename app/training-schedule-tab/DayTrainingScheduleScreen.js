@@ -6,23 +6,72 @@ import CountDown from 'react-native-countdown-component';
 import SessionCompleted from "../common/SessionCompleted";
 import DashboardIndexes from "../common/DasboardIndexes";
 import AreaOfImprovement from "../common/AreaOfImprovement";
+import GraphView from "../common/GraphView";
 
 
 class DayTrainingScheduleScreen extends React.Component {
 
 
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: "Schedule - " + navigation.getParam('title', 'Training Schedule'),
+            headerStyle: {
+                backgroundColor: '#f8f8f8',
+            },
+        };
+    };
+
     constructor() {
         super();
         this.state = {
             selectedIndex: 0,
-            selectedDrill: {},
             stateOne: true,
             stateTwo: false,
             stateThree: false,
             stateFour: false,
             stateFive: false,
             stateStateSix: false,
-            justCompletedSessionAnalyzed: false
+            justCompletedSessionAnalyzed: false,
+            selectedDrill: {},
+            guideArea: [
+                {
+                    "name": "Quantity of Steps",
+                    "area_id": 1,
+                    "description": "Number of steps taken by a player to reach from base to a point and back the base should be same.",
+                    "demo": "",
+                    "benefits": "This helps reduce extra energy expended in returning to neutral position. Helps strengthen thigh muscles in both legs."
+                },
+                {
+                    "name": "Feet Direction",
+                    "area_id": 2,
+                    "description": "Both the feet must always point in the direction of the shuttle",
+                    "demo": "",
+                    "benefits": "Makes shuttle retrieval easy, less chances of falling over"
+                },
+                {
+                    "name": "Length of consecutive steps",
+                    "area_id": 3,
+                    "description": "The length of a player's final step in any movement should be the longest.",
+                    "demo": "",
+                    "benefits": "Lunging helps take less steps and generate most power. "
+                },
+                {
+                    "name": "Split Step",
+                    "area_id": 4,
+                    "description": "Split step means that when the player is on the base, before moving in any direction to pick the shuttle, they should first take a split step - i.e. make their legs a bit wider and the move.",
+                    "demo": "",
+                    "benefits": "Body weight divided. Helps upper body stay stable."
+                },
+                {
+                    "name": "End step",
+                    "area_id": 5,
+                    "description": "A player must always end their movement with the dominant feet in the front.",
+                    "demo": "",
+                    "benefits": "Stable base to generate most power."
+                }
+
+            ]
+
         };
     }
 
@@ -35,53 +84,20 @@ class DayTrainingScheduleScreen extends React.Component {
             selectedDrill: day.drills[0],
             stateOne: true,
             stateTwo: false,
-            stateThree: false
+            stateThree: false,
+            stateFour: false,
+            stateFive: false,
+            stateStateSix: false,
+            justCompletedSessionAnalyzed: false
+
         });
 
     }
 
-    stateOne() {
-        return (<View>
-            <View style={styles.recordingButton}>
-                <Button title="Start Recording"/>
-            </View>
-            <View style={{marginTop: 30}}>
-                <Text style={{
-                    fontSize: 17,
-                    textAlign: 'left'
-                }}>{this.state.selectedDrill.name}</Text>
-                <Text style={{
-                    fontSize: 15,
-                    textAlign: 'left',
-                    opacity: 0.8,
-                    marginTop: 10
-                }}>{this.state.selectedDrill.description}</Text>
-                <View style={{paddingTop: 30}}>
-                    <Text style={{
-                        fontSize: 17,
-                        textAlign: 'left'
-                    }}>Demo</Text>
-                </View>
-                <View style={{paddingTop: 350}}>
-                    <Text style={{
-                        fontSize: 17,
-                        textAlign: 'left'
-                    }}>Benefits</Text>
-                </View>
-                <Text style={{
-                    fontSize: 15,
-                    textAlign: 'left',
-                    opacity: 0.8,
-                    marginTop: 10
-                }}>{this.state.selectedDrill.benefits}</Text>
-            </View>
-        </View>);
-    }
 
     render() {
         const {navigation} = this.props;
         const day = navigation.getParam('day', {});
-        console.log('Initial state',this.state.stateOne);
 
         let handleIndexChange = (index) => {
             this.setState({
@@ -101,7 +117,8 @@ class DayTrainingScheduleScreen extends React.Component {
                         onTabPress={handleIndexChange}
                     />
                 </View>
-                <View>{this.displayViewsBasedOnState()}</View>
+                <View>
+                    {this.displayViewsBasedOnState()}</View>
             </ScrollView>
         );
     }
@@ -109,10 +126,9 @@ class DayTrainingScheduleScreen extends React.Component {
     displayViewsBasedOnState() {
 
         if (this.state.stateOne) {
-            console.log('DisplayView 1');
             return <View style={styles.innerContainer}>
                 <View style={styles.recordingButton}>
-                    <Button onPress={this.onStartRecordingPress()} title="Start Recording"/>
+                    <Button title="Start Recording" onPress={() => this.onStartRecordingPress()}/>
                 </View>
                 <View style={{marginTop: 30}}>
                     <Text style={{
@@ -155,14 +171,14 @@ class DayTrainingScheduleScreen extends React.Component {
                     digitTxtStyle={{color: '#007AFF'}}
                     timeToShow={['S']}
                     timeLabels={{s: ''}}
-                /></View>;
+                /></View>
         } else if (this.state.stateThree) {
             return <View style={styles.innerContainer}>
                 <View styles={{}}>
                     <Text style={{fontSize: 28, color: '#EE4444'}}>Recording Data ...</Text>
                 </View>
                 <View style={styles.recordingButton}>
-                    <Button title="Stop Recording" onPress={this.stopRecordingButtonPressed()}/>
+                    <Button title="Stop Recording" onPress={() => this.stopRecordingButtonPressed()}/>
                 </View>
                 <View style={{marginTop: 30}}>
                     <Text style={{
@@ -204,7 +220,7 @@ class DayTrainingScheduleScreen extends React.Component {
                     Last Completed Session</Text>
                 <View>{this.showLastAnalyzedSession()}</View>
                 <View style={styles.recordingButton}>
-                    <Button title="Record Another Session" onPress={this.recordAnotherSessionButtonPressed()}/>
+                    <Button title="Record Another Session" onPress={() => this.recordAnotherSessionButtonPressed()}/>
                 </View>
                 <Text
                     style={{fontSize: 17, textAlign: 'left', marginTop: 30}}>
@@ -231,15 +247,14 @@ class DayTrainingScheduleScreen extends React.Component {
                             More</Text></Text>
                 </View>
                 <View style={styles.areaOfImprovementContainer}>
-                    <TouchableHighlight underlayColor='#f8f8f8'
-                                        onPress={() => this.showGraphs()}><AreaOfImprovement
-                        name="Quantity of Steps" score="7/10"/></TouchableHighlight>
-                    <AreaOfImprovement name="Quantity of Steps" score="7/10"/>
-                    <AreaOfImprovement name="Quantity of Steps" score="7/10"/>
-                    <AreaOfImprovement name="Quantity of Steps" score="7/10"/>
-                    <AreaOfImprovement name="Quantity of Steps" score="7/10"/>
-                    <AreaOfImprovement name="Quantity of Steps" score="7/10"/>
-                    <AreaOfImprovement name="Quantity of Steps" score="7/10"/>
+                    {this.state.guideArea.map((area, key) => {
+                        return <View key={key} style={{paddingBottom: 30}}><TouchableHighlight underlayColor='#f8f8f8'
+                                                                                               onPress={() => navigate('Details', {})}>
+                            <AreaOfImprovement
+                                name={area.name} score="7/10"/></TouchableHighlight></View>
+                    })}
+
+
 
                 </View>
             </View>
@@ -251,6 +266,7 @@ class DayTrainingScheduleScreen extends React.Component {
                         textAlign: 'left', flex: 1
 
                     }}>Quantity of Steps</Text>
+                    <GraphView/>
                 </View>
             </View>
         }
@@ -334,10 +350,11 @@ class DayTrainingScheduleScreen extends React.Component {
 
     openInformationOnIndexes() {
         Alert.alert(
-            'Record Another Session',
-            'Would you like to record another session of the same drill?',
+            'Custom Indexes',
+            '\n\nMotion Index: Fraction of time on the court for which a player is moving. Less Motion Index correlates with superior anticipation and dominating skills.' +
+            '\n\n Distance Index: Distance traveled by a player. Usually represents skill of player. Some rallies may be long, but with good court coverage and finishes, they can reduce this value.  \n\n Time Index: Time taken by a player to finish drills. Gives better estimate of stamina, flexibility and how long one can play optimally. ',
             [
-                {text: 'OK', onPress: () => console.log('ok pressed')}
+                {text: 'Ok', onPress: () => console.log('Cancel Pressed')}
             ],
             {cancelable: false},
         );

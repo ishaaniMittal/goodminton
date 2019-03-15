@@ -6,7 +6,7 @@ import styles from "./styles";
 class GuideArea extends React.Component {
     render() {
         return (
-            <View>
+            <View style={{minHeight: 100}}>
                 <View style={styles.boundaryGuideArea}
                       onPress={() => navigate('GuideDetailsScreen', {name: this.props.name})}>
                     <Text style={styles.textHeader}>{this.props.name}</Text>

@@ -1,9 +1,6 @@
 package com.goodminton;
 
 import com.facebook.react.ReactActivity;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.brentvatne.react.ReactVideoPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 
 public class MainActivity extends ReactActivity {
 

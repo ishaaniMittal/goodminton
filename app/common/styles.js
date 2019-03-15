@@ -20,14 +20,17 @@ const styles = StyleSheet.create({
         textHeader: {
             fontSize: 17,
             textAlign: 'left',
-            paddingLeft: 15
+            paddingLeft: 15,
+            fontFamily: "SFProText-Regular",
         },
         textBody: {
             fontSize: 15,
             textAlign: 'left',
             opacity: 0.8,
             marginTop: 10,
-            paddingLeft: 15
+            paddingLeft: 15,
+            paddingRight:15,
+            fontFamily: "SFProText-Regular"
         },
         textBodyForCustomIndex: {
             fontSize: 15,
@@ -35,7 +38,8 @@ const styles = StyleSheet.create({
             opacity: 0.8,
             marginTop: 10,
             paddingLeft: 15,
-            marginBottom: 10
+            marginBottom: 10,
+            fontFamily: "SFProText-Regular"
         },
         textBodyFullOpacity: {
             fontSize: 15,
@@ -44,14 +48,16 @@ const styles = StyleSheet.create({
             marginTop: 10,
             paddingLeft: 15,
             marginLeft: 10,
-            marginRight: 10
+            marginRight: 10,
+            fontFamily: "SFProText-Regular"
         },
         textAreaOfImprovement: {
             fontSize: 34,
             fontWeight: '700',
             textAlign: 'right',
             color: 'black',
-            paddingRight: 20
+            paddingRight: 20,
+            fontFamily: "SFProText-Regular"
         },
         innerContainer: {
             flex: 1,
@@ -63,7 +69,7 @@ const styles = StyleSheet.create({
         areaOfImprovementContainer: {
             flex: 1,
             paddingTop: 20,
-            paddingBottom: 20,
+            marginBottom: 20,
             paddingLeft: 20,
             paddingRight: 20
         },
@@ -78,7 +84,8 @@ const styles = StyleSheet.create({
         },
         dashBoardDayHeader: {
             textAlign: 'center',
-            fontSize: 20
+            fontSize: 20,
+            fontFamily: "SFProText-Regular"
         },
         circleForIndex: {
             flex: 1,
@@ -93,7 +100,8 @@ const styles = StyleSheet.create({
         },
         indexNumberInCircle: {
             fontSize: 28,
-            textAlign: 'center'
+            textAlign: 'center',
+            fontFamily: "SFProText-Regular"
 
         },
         borderForCustomIndexText: {

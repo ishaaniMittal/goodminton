@@ -2,6 +2,9 @@
   "name": "Goodminton",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": "8.15.1"
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
@@ -11,16 +14,14 @@
     "react-native": "0.58.5",
     "react-native-countdown-component": "^2.2.0",
     "react-native-elements": "^1.1.0",
+    "react-native-gesture-handler": "^1.1.0",
     "react-native-hyperlink": "0.0.14",
     "react-native-modal": "^9.0.0",
+    "react-native-progress-circle": "^2.0.1",
     "react-native-segmented-control-tab": "^3.4.0",
-    "react-native-svg": "^9.2.4",
+    "react-native-svg": "^9.3.3",
     "react-native-switch": "^1.5.0",
     "react-native-switch-selector": "^1.1.12",
-    "react-native-vector-icons": "^6.3.0",
-    "react-native-video": "^4.4.0",
-    "react-native-video-player": "^0.10.0",
-    "react-native-youtube": "^1.1.0",
     "react-navigation": "^3.3.0",
     "victory-native": "^31.0.0"
   },
@@ -33,5 +34,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./app/assets/fonts/"
+    ]
   }
 }

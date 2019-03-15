@@ -5,8 +5,13 @@ import styles from "../common/styles";
 
 class GuideScreen extends React.Component {
 
-    static navigationOptions = {
-        title: 'Guide',
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: "Guide",
+            headerStyle: {
+                backgroundColor: '#f8f8f8',
+            },
+        };
     };
 
 
@@ -18,58 +23,37 @@ class GuideScreen extends React.Component {
                 {
                     "name": "Quantity of Steps",
                     "area_id": 1,
-                    "description": "The number of steps taken to move to a particular corner should be the same as the number of steps taken to come back to the base",
+                    "description": "Number of steps taken by a player to reach from base to a point and back the base should be same.",
                     "demo": "",
-                    "benefits": "This has some benefits which you should know one"
+                    "benefits": "This helps reduce extra energy expended in returning to neutral position. Helps strengthen thigh muscles in both legs."
                 },
                 {
-                    "name": "Quantity of Steps",
+                    "name": "Feet Direction",
                     "area_id": 2,
-                    "description": "The number of steps taken to move to a particular corner should be the same as the number of steps taken to come back to the base",
+                    "description": "Both the feet must always point in the direction of the shuttle",
                     "demo": "",
-                    "benefits": "this also has some benefits which you should know two"
+                    "benefits": "Makes shuttle retrieval easy, less chances of falling over"
                 },
                 {
-                    "name": "Quantity of Steps",
+                    "name": "Length of consecutive steps",
                     "area_id": 3,
-                    "description": "The number of steps taken to move to a particular corner should be the same as the number of steps taken to come back to the base",
+                    "description": "The length of a player's final step in any movement should be the longest.",
                     "demo": "",
-                    "benefits": ""
+                    "benefits": "Lunging helps take less steps and generate most power. "
                 },
                 {
-                    "name": "Quantity of Steps",
+                    "name": "Split Step",
                     "area_id": 4,
-                    "description": "The number of steps taken to move to a particular corner should be the same as the number of steps taken to come back to the base",
+                    "description": "Split step means that when the player is on the base, before moving in any direction to pick the shuttle, they should first take a split step - i.e. make their legs a bit wider and the move.",
                     "demo": "",
-                    "benefits": ""
+                    "benefits": "Body weight divided. Helps upper body stay stable."
                 },
                 {
-                    "name": "Quantity of Steps",
+                    "name": "End step",
                     "area_id": 5,
-                    "description": "The number of steps taken to move to a particular corner should be the same as the number of steps taken to come back to the base",
+                    "description": "A player must always end their movement with the dominant feet in the front.",
                     "demo": "",
-                    "benefits": ""
-                },
-                {
-                    "name": "Quantity of Steps",
-                    "area_id": 6,
-                    "description": "The number of steps taken to move to a particular corner should be the same as the number of steps taken to come back to the base",
-                    "demo": "",
-                    "benefits": ""
-                },
-                {
-                    "name": "Quantity of Steps",
-                    "area_id": 7,
-                    "description": "The number of steps taken to move to a particular corner should be the same as the number of steps taken to come back to the base",
-                    "demo": "",
-                    "benefits": ""
-                },
-                {
-                    "name": "Quantity of Steps",
-                    "area_id": 8,
-                    "description": "The number of steps taken to move to a particular corner should be the same as the number of steps taken to come back to the base",
-                    "demo": "",
-                    "benefits": ""
+                    "benefits": "Stable base to generate most power."
                 }
 
             ]
@@ -92,7 +76,7 @@ class GuideScreen extends React.Component {
                 <View style={{flex: 1, marginBottom: 30}}>
                     {this.state.guideArea.map((area, key) => {
                         return <View key={key} style={{paddingBottom: 30}}><TouchableHighlight underlayColor='#f8f8f8'
-                                            onPress={() => navigate('GuideDetailsScreen', {area: area})}>
+                                            onPress={() => navigate('GuideDetailsScreen', {area: area, title:area.name})}>
                             <GuideArea
                                 name={area.name} description={area.description}/></TouchableHighlight></View>
                     })}
